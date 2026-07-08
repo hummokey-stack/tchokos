@@ -27,7 +27,7 @@ function initMockDatabase() {
   if (!localStorage.getItem(productsKey)) {
     const initialProducts = [
       {
-        "id": "p1a79854-1845-4c07-ba71-6c2cfdfa3531",
+        "id": "f1a79854-1845-4c07-ba71-6c2cfdfa3531",
         "reference": "CH-IMP-001",
         "name": "Mocassins Classiques Homme",
         "slug": "mocassins-classiques-homme",
@@ -43,7 +43,7 @@ function initMockDatabase() {
         "created_at": "2026-07-06T00:00:00.000Z"
       },
       {
-        "id": "p2a79854-1845-4c07-ba71-6c2cfdfa3532",
+        "id": "f2a79854-1845-4c07-ba71-6c2cfdfa3532",
         "reference": "CH-LOC-002",
         "name": "Sandales Traditionnelles Douala",
         "slug": "sandales-traditionnelles-douala",
@@ -59,7 +59,7 @@ function initMockDatabase() {
         "created_at": "2026-07-06T00:00:00.000Z"
       },
       {
-        "id": "p3a79854-1845-4c07-ba71-6c2cfdfa3533",
+        "id": "f3a79854-1845-4c07-ba71-6c2cfdfa3533",
         "reference": "SAC-LOC-003",
         "name": "Sac à Main Cabas Kribi",
         "slug": "sac-a-main-cabas-kribi",
@@ -81,13 +81,13 @@ function initMockDatabase() {
   const variantsKey = 'tchokoss_db_product_variants';
   if (!localStorage.getItem(variantsKey)) {
     const initialVariants = [
-      {"id": "v1a79854-1845-4c07-ba71-6c2cfdfa3534", "product_id": "p1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-42-NOIR", "size": "42", "color": "Noir", "stock_qty": 15, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v2a79854-1845-4c07-ba71-6c2cfdfa3535", "product_id": "p1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-43-NOIR", "size": "43", "color": "Noir", "stock_qty": 20, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v3a79854-1845-4c07-ba71-6c2cfdfa3536", "product_id": "p1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-42-MARRON", "size": "42", "color": "Marron", "stock_qty": 10, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v4a79854-1845-4c07-ba71-6c2cfdfa3537", "product_id": "p2a79854-1845-4c07-ba71-6c2cfdfa3532", "sku": "SKU-CH-LOC-002-41-NATUREL", "size": "41", "color": "Naturel", "stock_qty": 30, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v5a79854-1845-4c07-ba71-6c2cfdfa3538", "product_id": "p2a79854-1845-4c07-ba71-6c2cfdfa3532", "sku": "SKU-CH-LOC-002-42-NATUREL", "size": "42", "color": "Naturel", "stock_qty": 25, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v6a79854-1845-4c07-ba71-6c2cfdfa3539", "product_id": "p3a79854-1845-4c07-ba71-6c2cfdfa3533", "sku": "SKU-SAC-LOC-003-TU-NOIR", "size": "TU", "color": "Noir", "stock_qty": 8, "created_at": "2026-07-06T00:00:00.000Z"},
-      {"id": "v7a79854-1845-4c07-ba71-6c2cfdfa3540", "product_id": "p3a79854-1845-4c07-ba71-6c2cfdfa3533", "sku": "SKU-SAC-LOC-003-TU-ROUGE", "size": "TU", "color": "Rouge", "stock_qty": 5, "created_at": "2026-07-06T00:00:00.000Z"}
+      {"id": "e1a79854-1845-4c07-ba71-6c2cfdfa3534", "product_id": "f1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-42-NOIR", "size": "42", "color": "Noir", "stock_qty": 15, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e2a79854-1845-4c07-ba71-6c2cfdfa3535", "product_id": "f1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-43-NOIR", "size": "43", "color": "Noir", "stock_qty": 20, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e3a79854-1845-4c07-ba71-6c2cfdfa3536", "product_id": "f1a79854-1845-4c07-ba71-6c2cfdfa3531", "sku": "SKU-CH-IMP-001-42-MARRON", "size": "42", "color": "Marron", "stock_qty": 10, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e4a79854-1845-4c07-ba71-6c2cfdfa3537", "product_id": "f2a79854-1845-4c07-ba71-6c2cfdfa3532", "sku": "SKU-CH-LOC-002-41-NATUREL", "size": "41", "color": "Naturel", "stock_qty": 30, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e5a79854-1845-4c07-ba71-6c2cfdfa3538", "product_id": "f2a79854-1845-4c07-ba71-6c2cfdfa3532", "sku": "SKU-CH-LOC-002-42-NATUREL", "size": "42", "color": "Naturel", "stock_qty": 25, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e6a79854-1845-4c07-ba71-6c2cfdfa3539", "product_id": "f3a79854-1845-4c07-ba71-6c2cfdfa3533", "sku": "SKU-SAC-LOC-003-TU-NOIR", "size": "TU", "color": "Noir", "stock_qty": 8, "created_at": "2026-07-06T00:00:00.000Z"},
+      {"id": "e7a79854-1845-4c07-ba71-6c2cfdfa3540", "product_id": "f3a79854-1845-4c07-ba71-6c2cfdfa3533", "sku": "SKU-SAC-LOC-003-TU-ROUGE", "size": "TU", "color": "Rouge", "stock_qty": 5, "created_at": "2026-07-06T00:00:00.000Z"}
     ];
     localStorage.setItem(variantsKey, JSON.stringify(initialVariants));
   }
@@ -131,8 +131,8 @@ function initMockDatabase() {
       {
         "id": "sample-item-uuid-9999",
         "order_id": "sample-order-uuid-9999",
-        "product_id": "p1a79854-1845-4c07-ba71-6c2cfdfa3531",
-        "variant_id": "v1a79854-1845-4c07-ba71-6c2cfdfa3534",
+        "product_id": "f1a79854-1845-4c07-ba71-6c2cfdfa3531",
+        "variant_id": "e1a79854-1845-4c07-ba71-6c2cfdfa3534",
         "product_name": "Mocassins Classiques Homme",
         "sku": "SKU-CH-IMP-001-42-NOIR",
         "unit_price": 45000,
