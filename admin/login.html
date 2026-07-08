@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration Connexion — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body class="admin-login-layout">
+
+  <div class="login-card">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <a href="/" class="logo" style="justify-content: center; font-size: 2rem;">Tchokos<span>.</span></a>
+      <p style="color: var(--text-muted); margin-top: 8px; font-weight: 500;">Portail d'Administration</p>
+    </div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Adresse Email</label>
+        <input type="email" id="login-email" class="form-input" placeholder="admin@tchokos.com" required autocomplete="email">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label class="form-label" for="login-password">Mot de passe</label>
+        <input type="password" id="login-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <div id="error-message" style="display: none; color: var(--error); font-weight: 600; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
+        Identifiants invalides ou droits insuffisants.
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-hover)); box-shadow: none;">
+        Se connecter
+      </button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { supabase } from '/client/js/supabaseClient.js'
+
+    const form = document.getElementById('login-form')
+    const errorEl = document.getElementById('error-message')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      errorEl.style.display = 'none'
+
+      const email = document.getElementById('login-email').value
+      const password = document.getElementById('login-password').value
+
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        })
+
+        if (error) throw error
+
+        // Now verify user has an admin profile role
+        const { data: profile, error: profError } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single()
+
+        if (profError || !profile || !profile.role) {
+          // No admin role, sign out immediately
+          await supabase.auth.signOut()
+          throw new Error("Vous n'avez pas de droits d'accès administratifs.")
+        }
+
+        // Redirect to dashboard
+        window.location.href = '/admin/dashboard.html'
+      } catch (err) {
+        console.error('Erreur connexion admin:', err)
+        errorEl.textContent = err.message || 'Identifiants incorrects.'
+        errorEl.style.display = 'block'
+      }
+    })
+  </script>
+</body>
+</html>

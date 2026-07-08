@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <span>Tchokos Admin</span>
+    </div>
+    <ul class="admin-sidebar-menu">
+      <li>
+        <a class="admin-menu-link active" data-tab="dashboard">
+          <span>📊</span> Overview
+        </a>
+      </li>
+      <li>
+        <a class="admin-menu-link" data-tab="orders">
+          <span>🛍️</span> Commandes
+        </a>
+      </li>
+      <li>
+        <a class="admin-menu-link" data-tab="products">
+          <span>👞</span> Produits & Catégories
+        </a>
+      </li>
+      <li>
+        <a class="admin-menu-link" data-tab="stock">
+          <span>📦</span> Gestion des Stocks
+        </a>
+      </li>
+      <li id="menu-admins-item" style="display: none;">
+        <a class="admin-menu-link" data-tab="admins">
+          <span>👤</span> Administrateurs
+        </a>
+      </li>
+      <li>
+        <a class="admin-menu-link" data-tab="sync">
+          <span>🔄</span> Synchro Externe
+        </a>
+      </li>
+    </ul>
+    <div style="padding: 20px; border-top: 1px solid #1e293b;">
+      <div id="admin-user-info" style="font-size: 0.85rem; margin-bottom: 12px; color: var(--admin-text-light);">
+        Connecté : <strong id="admin-name">...</strong> (<span id="admin-role">...</span>)
+      </div>
+      <button class="admin-btn admin-btn-secondary btn-block" id="admin-logout" style="background-color: transparent; border-color: #1e293b; color: #f8fafc;">
+        Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="tab-dashboard" class="tab-content active">
+      <h1 style="margin-bottom: 30px;">Overview</h1>
+      
+      <!-- Stats Cards -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Ventes Totales</div>
+          <div class="stat-value" id="stats-sales">0 FCFA</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Commandes Reçues</div>
+          <div class="stat-value" id="stats-orders">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Alertes Rupture</div>
+          <div class="stat-value" id="stats-low-stock" style="color: var(--admin-danger);">0</div>
+        </div>
+      </div>
+
+      <!-- Recent Orders -->
+      <h2 style="margin-bottom: 20px; font-family: var(--font-display);">Commandes Récentes</h2>
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>N° Commande</th>
+              <th>Client</th>
+              <th>Type</th>
+              <th>Total</th>
+              <th>Statut</th>
+              <th>Paiement</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="recent-orders-table">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--admin-text-light);">Chargement des commandes...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 2: ORDERS -->
+    <div id="tab-orders" class="tab-content">
+      <div class="flex-between" style="margin-bottom: 30px;">
+        <h1>Gestion des Commandes</h1>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>N° Commande</th>
+              <th>Client</th>
+              <th>Téléphone</th>
+              <th>Type</th>
+              <th>Livraison</th>
+              <th>Total</th>
+              <th>Statut</th>
+              <th>Paiement</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="all-orders-table">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: PRODUCTS -->
+    <div id="tab-products" class="tab-content">
+      <div class="flex-between" style="margin-bottom: 30px;">
+        <h1>Catalogue Produits & Promotions</h1>
+        <button class="admin-btn admin-btn-primary" id="open-product-modal-btn">+ Ajouter un Produit</button>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+        <button class="btn btn-secondary active" id="btn-show-products-list" style="padding: 8px 16px; font-size: 0.9rem;">Liste des Produits</button>
+        <button class="btn btn-secondary" id="btn-show-promotions-list" style="padding: 8px 16px; font-size: 0.9rem;">Gestion des Promotions</button>
+      </div>
+
+      <div id="products-list-container">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Référence</th>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Famille</th>
+                <th>Prix Détail</th>
+                <th>Prix Gros</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-products-table">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="promotions-list-container" style="display: none;">
+        <div class="flex-between" style="margin-bottom: 20px;">
+          <h3>Promotions Actives</h3>
+          <button class="admin-btn admin-btn-primary" id="open-promo-modal-btn">+ Créer une Promotion</button>
+        </div>
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Valeur</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-promotions-table">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: STOCK -->
+    <div id="tab-stock" class="tab-content">
+      <div class="flex-between" style="margin-bottom: 30px;">
+        <h1>Gestion des Stocks & Variantes</h1>
+        <button class="admin-btn admin-btn-primary" id="open-variant-modal-btn">+ Nouvelle Variante</button>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+        <button class="btn btn-secondary active" id="btn-show-stock-list" style="padding: 8px 16px; font-size: 0.9rem;">État des Stocks</button>
+        <button class="btn btn-secondary" id="btn-show-stock-moves" style="padding: 8px 16px; font-size: 0.9rem;">Historique des Mouvements</button>
+      </div>
+
+      <div id="stock-list-container">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>SKU Variante</th>
+                <th>Produit</th>
+                <th>Taille</th>
+                <th>Couleur</th>
+                <th>Stock Actuel</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-stock-table">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="stock-moves-container" style="display: none;">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>SKU Variante</th>
+                <th>Type</th>
+                <th>Quantité</th>
+                <th>Raison</th>
+              </tr>
+            </thead>
+            <tbody id="all-moves-table">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ADMINS -->
+    <div id="tab-admins" class="tab-content">
+      <div class="flex-between" style="margin-bottom: 30px;">
+        <h1>Gestion des Administrateurs</h1>
+        <button class="admin-btn admin-btn-primary" id="open-admin-modal-btn">+ Inviter un Admin</button>
+      </div>
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email / ID</th>
+              <th>Rôle</th>
+              <th>Date de création</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="all-admins-table">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 6: SYNC -->
+    <div id="tab-sync" class="tab-content">
+      <div class="flex-between" style="margin-bottom: 30px;">
+        <h1>File de Synchronisation (Outbox Queue)</h1>
+        <button class="admin-btn admin-btn-primary" id="run-sync-worker-btn">Lancer le Worker (Synchro)</button>
+      </div>
+
+      <div class="card" style="margin-bottom: 30px; padding: 20px; background-color: var(--admin-bg-light);">
+        <h3 style="margin-bottom: 10px;">Statut du connecteur stock externe (Stub Mode)</h3>
+        <p>Le connecteur est actuellement configuré en **mode bouchon (stub)**. Cliquer sur le bouton ci-dessus simule la synchronisation des données vers l'application de comptabilité/gestion de stock externe de Tchokos SARL en mettant à jour le statut de la file d'attente.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type Événement</th>
+              <th>Tentatives</th>
+              <th>Statut</th>
+              <th>Détails Payload</th>
+              <th>Erreur</th>
+            </tr>
+          </thead>
+          <tbody id="all-sync-table">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: ADD PRODUCT -->
+  <div class="admin-modal" id="product-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title" style="font-family: var(--font-display);">Ajouter un Produit</h3>
+        <button class="icon-btn" id="close-product-modal" style="font-size: 1.5rem;">&times;</button>
+      </div>
+      <form id="product-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="prod-reference">Référence *</label>
+            <input type="text" id="prod-reference" class="form-input" placeholder="Ex: CH-LOC-042" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-name">Nom du Produit *</label>
+            <input type="text" id="prod-name" class="form-input" placeholder="Ex: Mocassins Nobles" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-slug">Slug (URL) *</label>
+            <input type="text" id="prod-slug" class="form-input" placeholder="Ex: mocassins-nobles" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-category">Catégorie *</label>
+            <select id="prod-category" class="form-input" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-description">Description</label>
+            <textarea id="prod-description" class="form-input" rows="3" placeholder="Description du produit..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-price-retail">Prix de Vente Détail (FCFA) *</label>
+            <input type="number" id="prod-price-retail" class="form-input" required min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-price-wholesale">Prix de Vente Gros (FCFA) *</label>
+            <input type="number" id="prod-price-wholesale" class="form-input" required min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-image">URL de l'image principale</label>
+            <input type="url" id="prod-image" class="form-input" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prod-status">Statut de publication</label>
+            <select id="prod-status" class="form-input">
+              <option value="draft">Brouillon (Draft)</option>
+              <option value="published">Publié (Published)</option>
+            </select>
+          </div>
+          <div style="display: flex; gap: 20px;">
+            <label><input type="checkbox" id="prod-is-new"> Nouveauté</label>
+            <label><input type="checkbox" id="prod-is-featured"> Produit Vedette</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-btn admin-btn-secondary" id="cancel-product-btn">Annuler</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADJUST STOCK -->
+  <div class="admin-modal" id="stock-modal">
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Ajuster le Stock</h3>
+        <button class="icon-btn" id="close-stock-modal" style="font-size: 1.5rem;">&times;</button>
+      </div>
+      <form id="stock-form">
+        <input type="hidden" id="stock-variant-id">
+        <div class="modal-body">
+          <p style="margin-bottom: 16px; font-weight: 500;">Variante: <strong id="stock-variant-sku" style="color: var(--admin-primary);">...</strong></p>
+          <p style="margin-bottom: 16px;">Stock actuel: <strong id="stock-current-qty">0</strong> articles</p>
+          
+          <div class="form-group">
+            <label class="form-label" for="stock-adjust-qty">Quantité à ajuster *</label>
+            <input type="number" id="stock-adjust-qty" class="form-input" placeholder="Ex: 5 ou -3" required>
+            <small style="color: var(--admin-text-light)">Saisir une valeur positive pour un ajout, ou négative pour un retrait.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="stock-adjust-reason">Raison de l'ajustement *</label>
+            <select id="stock-adjust-reason" class="form-input" required>
+              <option value="Inventaire physique">Inventaire physique</option>
+              <option value="Arrivage de stock">Arrivage de stock</option>
+              <option value="Correction erreur">Correction d'erreur de saisie</option>
+              <option value="Perte ou vol">Perte, casse ou vol</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-btn admin-btn-secondary" id="cancel-stock-btn">Annuler</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Ajuster le stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: INVITE ADMIN -->
+  <div class="admin-modal" id="admin-modal">
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Inviter un Administrateur</h3>
+        <button class="icon-btn" id="close-admin-modal" style="font-size: 1.5rem;">&times;</button>
+      </div>
+      <form id="admin-invite-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="admin-new-name">Nom complet *</label>
+            <input type="text" id="admin-new-name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="admin-new-email">Adresse Email *</label>
+            <input type="email" id="admin-new-email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="admin-new-password">Mot de passe initial *</label>
+            <input type="password" id="admin-new-password" class="form-input" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="admin-new-role">Rôle assigné *</label>
+            <select id="admin-new-role" class="form-input" required>
+              <option value="moderateur">Modérateur</option>
+              <option value="admin_produit">Admin Produits</option>
+              <option value="admin_commandes">Admin Commandes</option>
+              <option value="admin_stock">Admin Stocks</option>
+              <option value="super_admin">Super Admin</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-btn admin-btn-secondary" id="cancel-admin-btn">Annuler</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Créer le compte</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CREATE VARIANT -->
+  <div class="admin-modal" id="variant-modal">
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Créer une Variante</h3>
+        <button class="icon-btn" id="close-variant-modal" style="font-size: 1.5rem;">&times;</button>
+      </div>
+      <form id="variant-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="var-product-id">Produit *</label>
+            <select id="var-product-id" class="form-input" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="var-sku">SKU Unique *</label>
+            <input type="text" id="var-sku" class="form-input" placeholder="Ex: SKU-CH-LOC-42-NOIR" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="var-size">Taille / Pointure</label>
+            <input type="text" id="var-size" class="form-input" placeholder="Ex: 42">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="var-color">Couleur</label>
+            <input type="text" id="var-color" class="form-input" placeholder="Ex: Noir">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="var-stock">Stock Initial</label>
+            <input type="number" id="var-stock" class="form-input" value="0" min="0">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-btn admin-btn-secondary" id="cancel-variant-btn">Annuler</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Créer la variante</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CREATE PROMOTION -->
+  <div class="admin-modal" id="promo-modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Créer une Promotion</h3>
+        <button class="icon-btn" id="close-promo-modal" style="font-size: 1.5rem;">&times;</button>
+      </div>
+      <form id="promo-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="promo-title">Titre *</label>
+            <input type="text" id="promo-title" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="promo-type">Type de remise *</label>
+            <select id="promo-type" class="form-input" required>
+              <option value="percentage">Pourcentage (%)</option>
+              <option value="fixed">Montant fixe (FCFA)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="promo-value">Valeur de la remise *</label>
+            <input type="number" id="promo-value" class="form-input" required min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="promo-starts">Date de début *</label>
+            <input type="datetime-local" id="promo-starts" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="promo-ends">Date de fin *</label>
+            <input type="datetime-local" id="promo-ends" class="form-input" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-btn admin-btn-secondary" id="cancel-promo-btn">Annuler</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/admin/js/dashboard.js"></script>
+</body>
+</html>

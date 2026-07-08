@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotions & Nouveautés — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    .promo-hero {
+      background: linear-gradient(135deg, #d97706, #1e293b);
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header -->
+  <header></header>
+
+  <main>
+    <section class="promo-hero">
+      <div class="container">
+        <h1 style="color: var(--white); font-size: 2.5rem; font-family: var(--font-display);">Nouveautés & Offres</h1>
+        <p style="color: #cbd5e1; margin-top: 10px;">Soyez le premier à découvrir nos toutes dernières créations et arrivages.</p>
+      </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 80px;">
+      <h2 style="font-family: var(--font-display); margin-bottom: 30px; text-align: center;">Dernières Nouveautés</h2>
+      
+      <div class="grid-4" id="new-arrivals-grid">
+        <p style="text-align: center; grid-column: 1/-1; color: var(--text-muted);">Chargement des nouveautés...</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer -->
+  <footer></footer>
+
+  <script type="module" src="/client/js/ui.js"></script>
+  <script type="module">
+    import { supabase } from '/client/js/supabaseClient.js'
+
+    async function loadNewArrivals() {
+      const grid = document.getElementById('new-arrivals-grid')
+      try {
+        const { data: products, error } = await supabase
+          .from('products')
+          .select('*, categories(name)')
+          .eq('status', 'published')
+          .eq('is_new', true)
+          .limit(8)
+
+        if (error) throw error
+
+        if (!products || products.length === 0) {
+          grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-muted);">Aucune nouveauté pour le moment. Repassez bientôt !</p>'
+          return
+        }
+
+        grid.innerHTML = products.map(product => `
+          <div class="product-card">
+            <span class="badge-tag">Nouveau</span>
+            <div class="product-img-wrapper">
+              <img class="product-img" src="${product.main_image_url || 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&auto=format&fit=crop&q=60'}" alt="${product.name}">
+            </div>
+            <div class="product-content">
+              <span class="product-category">${product.categories?.name || 'Général'}</span>
+              <h3 class="product-title">${product.name}</h3>
+              <div class="product-price-row">
+                <span class="price">${Number(product.price_retail).toLocaleString('fr-FR')} FCFA</span>
+              </div>
+              <a href="/client/produit.html?slug=${product.slug}" class="btn btn-secondary btn-block" style="margin-top: 15px;">Voir le produit</a>
+            </div>
+          </div>
+        `).join('')
+      } catch (err) {
+        console.error('Erreur chargement nouveautés:', err)
+        grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--error);">Impossible de charger les nouveautés.</p>'
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadNewArrivals)
+  </script>
+</body>
+</html>

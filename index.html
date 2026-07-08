@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tchokos SARL — Boutique de Luxe Chaussures & Sacs</title>
+  <meta name="description" content="Tchokos SARL — Chaussures et sacs en cuir fabriqués à Douala et sélection internationale. Vente en gros et au détail, retrait en boutique à Akwa ou livraison sur Douala.">
+  <meta property="og:title" content="Tchokos SARL — Boutique de Luxe Chaussures & Sacs">
+  <meta property="og:description" content="Chaussures et sacs en cuir fabriqués à Douala, à la vente en gros et au détail. Livraison sur Douala ou retrait en boutique à Akwa.">
+  <meta property="og:image" content="/img/136114b1f4f231a692442ad784463e24.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    /* Hero Scrollytelling Slider */
+    #hero-scrolly {
+      position: relative;
+      height: calc(100vh - 125px);
+      height: calc(100svh - 125px);
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+    
+    .scrolly-title {
+      font-size: 3.7rem;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: #ffffff;
+      font-family: var(--font-display);
+    }
+
+    .scrolly-title em {
+      font-style: italic;
+      font-family: var(--font-display);
+    }
+
+    .scrolly-word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      padding-bottom: 0.08em;
+      margin-bottom: -0.08em;
+    }
+    
+    .scrolly-desc {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 32px;
+      max-width: 600px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+      #hero-scrolly {
+        height: calc(100vh - 125px);
+        height: calc(100svh - 125px);
+      }
+      .scrolly-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+      .scrolly-desc {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        line-height: 1.4;
+      }
+      .scrolly-eyebrow {
+        margin-bottom: 16px !important;
+        font-size: 0.75rem !important;
+        padding: 4px 12px !important;
+      }
+      .scrolly-indicators {
+        bottom: 30px !important;
+      }
+    }
+    
+    .scrolly-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .scrolly-slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scrolly-slider-container {
+      position: absolute;
+      inset: -3%;
+      width: 106%;
+      height: 106%;
+    }
+
+    .scrolly-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1);
+      will-change: transform, filter;
+    }
+    
+    .scrolly-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+      will-change: opacity;
+    }
+    
+    .scrolly-content {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      width: 100%;
+    }
+    
+    .scrolly-text-wrapper {
+      max-width: 800px;
+      padding: 0 24px;
+      will-change: transform;
+    }
+    
+    .scrolly-word {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+    
+    /* Progress Ring for Indicators */
+    .scrolly-indicators {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 24px;
+      z-index: 10;
+    }
+    
+    .indicator-dot {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s ease;
+    }
+    
+    .indicator-dot {
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .indicator-dot.active {
+      background: var(--primary);
+      transform: scale(1.15);
+    }
+
+    .scrolly-counter {
+      position: absolute;
+      bottom: 54px;
+      right: 40px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .scrolly-counter .current {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .scrolly-counter .divider {
+      width: 20px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .scrolly-counter { display: none; }
+    }
+    
+    .progress-ring {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 32px;
+      height: 32px;
+      transform: rotate(-90deg);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .indicator-dot.active .progress-ring {
+      opacity: 1;
+    }
+    
+    .progress-ring-circle {
+      stroke: var(--primary);
+      stroke-width: 2px;
+      fill: transparent;
+      r: 14;
+      cx: 16;
+      cy: 16;
+      stroke-dasharray: 88;
+      stroke-dashoffset: 88;
+    }
+    
+    .scroll-darken-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: #000;
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+      will-change: opacity;
+    }
+
+
+    .promo-banner-premium {
+      background: var(--secondary);
+      color: var(--light-bg);
+      padding: 80px 40px;
+      text-align: center;
+      border-radius: var(--radius-lg);
+      margin: 80px 0;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-premium);
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header loaded via ui.js -->
+  <header></header>
+
+  <main>
+    <!-- Hero Slider Section (GSAP Scrollytelling) -->
+    <section id="hero-scrolly">
+      
+      <!-- Permanent brand line (independent of slide rotation) -->
+      <div class="hero-brand-strip">
+        <span>Tchokos SARL — Chaussures &amp; Maroquinerie, Douala</span>
+      </div>
+
+      <!-- Slide Container -->
+      <div class="scrolly-slider-container">
+        
+        <!-- Slide 1 -->
+        <div class="scrolly-slide active">
+          <div class="scrolly-bg" style="background-image: url('/img/136114b1f4f231a692442ad784463e24.jpg');"></div>
+          <div class="scrolly-overlay"></div>
+          <div class="container scrolly-content">
+            <div class="scrolly-text-wrapper">
+              <span class="eyebrow scrolly-eyebrow" style="background: rgba(217, 119, 6, 0.2); color: var(--primary);">Savoir-Faire & Confort</span>
+              <h1 class="scrolly-title">La Qualité de nos <br><em>Chaussures</em> d'Exception</h1>
+              <p class="scrolly-desc">Chaque paire est façonnée à la main à partir de cuirs rigoureusement sélectionnés pour vous assurer un confort et une durabilité incomparables.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="scrolly-slide">
+          <div class="scrolly-bg" style="background-image: url('/img/6ffc2ad6481354a670ea7e94522069db.jpg');"></div>
+          <div class="scrolly-overlay"></div>
+          <div class="container scrolly-content">
+            <div class="scrolly-text-wrapper">
+              <span class="eyebrow scrolly-eyebrow" style="background: rgba(217, 119, 6, 0.2); color: var(--primary);">Identité Créative</span>
+              <h1 class="scrolly-title">L'Originalité de nos <br><em>Sacs en Cuir</em></h1>
+              <p class="scrolly-desc">Des designs contemporains aux finitions d'orfèvre, exprimant toute l'authenticité et le caractère de notre héritage local.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="scrolly-slide">
+          <div class="scrolly-bg" style="background-image: url('/img/36c81f2b4be4cc82748cabb708ad227b.jpg');"></div>
+          <div class="scrolly-overlay"></div>
+          <div class="container scrolly-content">
+            <div class="scrolly-text-wrapper">
+              <span class="eyebrow scrolly-eyebrow" style="background: rgba(217, 119, 6, 0.2); color: var(--primary);">Privilège & Raffinement</span>
+              <h1 class="scrolly-title">Une Expérience <br><em>Absolument Unique</em></h1>
+              <p class="scrolly-desc">De l'accueil personnalisé au conseil stylistique, laissez-vous guider dans l'univers exclusif du luxe sur-mesure.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="scrolly-slide">
+          <div class="scrolly-bg" style="background-image: url('/img/c26cc44a291a30f1cae7b2331c94cf23.jpg');"></div>
+          <div class="scrolly-overlay"></div>
+          <div class="container scrolly-content">
+            <div class="scrolly-text-wrapper">
+              <span class="eyebrow scrolly-eyebrow" style="background: rgba(217, 119, 6, 0.2); color: var(--primary);">Collection Import</span>
+              <h1 class="scrolly-title">Importer l'Excellence & <br><em>la Qualité Mondiale</em></h1>
+              <p class="scrolly-desc">Nous voyageons et collaborons avec les tanneries et marques internationales les plus prestigieuses pour vous livrer la perfection.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Darkening Overlay -->
+      <div class="scroll-darken-overlay"></div>
+
+      <!-- Shared Fixed CTA Button (Remains static, doesn't re-animate) -->
+      <div class="container scrolly-cta-container" style="position: absolute; bottom: 18vh; left: 0; right: 0; z-index: 10; pointer-events: none;">
+        <div style="max-width: 800px; pointer-events: auto;">
+          <a href="/client/boutique.html" class="btn-pill btn-pill-primary" id="hero-cta" style="background: var(--primary); color: var(--white); font-weight: 500;">
+            Découvrir la Boutique
+            <span class="btn-icon-wrapper">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Smart Progress Indicators -->
+      <div class="scrolly-indicators">
+        <button class="indicator-dot active" data-index="0">
+          <svg class="progress-ring" width="32" height="32">
+            <circle class="progress-ring-circle" stroke="var(--primary)" stroke-width="2" fill="transparent" r="14" cx="16" cy="16"></circle>
+          </svg>
+        </button>
+        <button class="indicator-dot" data-index="1">
+          <svg class="progress-ring" width="32" height="32">
+            <circle class="progress-ring-circle" stroke="var(--primary)" stroke-width="2" fill="transparent" r="14" cx="16" cy="16"></circle>
+          </svg>
+        </button>
+        <button class="indicator-dot" data-index="2">
+          <svg class="progress-ring" width="32" height="32">
+            <circle class="progress-ring-circle" stroke="var(--primary)" stroke-width="2" fill="transparent" r="14" cx="16" cy="16"></circle>
+          </svg>
+        </button>
+        <button class="indicator-dot" data-index="3">
+          <svg class="progress-ring" width="32" height="32">
+            <circle class="progress-ring-circle" stroke="var(--primary)" stroke-width="2" fill="transparent" r="14" cx="16" cy="16"></circle>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Slide Counter -->
+      <div class="scrolly-counter">
+        <span class="current">01</span>
+        <span class="divider"></span>
+        <span class="total">04</span>
+      </div>
+
+    </section>
+
+    <!-- Reassurance Marquee -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Cuir Pleine Fleur</span>
+        <span class="marquee-item">Fabriqué à Douala</span>
+        <span class="marquee-item">Livraison Gratuite Douala</span>
+        <span class="marquee-item">Retrait Boutique Akwa</span>
+        <span class="marquee-item">Cuir Pleine Fleur</span>
+        <span class="marquee-item">Fabriqué à Douala</span>
+        <span class="marquee-item">Livraison Gratuite Douala</span>
+        <span class="marquee-item">Retrait Boutique Akwa</span>
+      </div>
+    </div>
+
+    <!-- Categories Shortcut (Bento Grid) -->
+    <section class="section" style="border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <span class="eyebrow" style="display: table; margin: 0 auto 12px;">Collections</span>
+        <h2 class="section-title" style="font-size: 2.5rem; text-align: center; font-family: var(--font-display); font-weight: 300; margin-bottom: 48px;">Nos Univers Créatifs</h2>
+
+        <div class="bento-grid">
+          <!-- Large bento (Production locale) -->
+          <div class="double-bezel bento-col-8 bento-row-2" data-reveal>
+            <div class="double-bezel-inner" style="justify-content: space-between; min-height: 400px; background: linear-gradient(180deg, rgba(253,251,247,0.1), rgba(28,25,23,0.85)), url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80') center center/cover; border: none; color: var(--white);">
+              <div>
+                <span class="badge-tag" style="background-color: var(--primary); position: static;">Savoir-Faire local</span>
+              </div>
+              <div style="margin-top: auto; max-width: 500px;">
+                <h3 class="product-title" style="font-size: 2.25rem; color: var(--white); margin-bottom: 12px;">Production Artisanale</h3>
+                <p style="color: #cbd5e1; margin-bottom: 24px; font-size: 0.95rem;">Des créations uniques façonnées à la main par nos maîtres artisans à Douala avec du cuir de qualité supérieure.</p>
+                <a href="/client/produits-locaux.html" class="btn-pill btn-pill-primary" style="background: var(--primary); color: var(--white);">
+                  Explorer la Collection
+                  <span class="btn-icon-wrapper">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small bento 1 (Chaussures Importées) -->
+          <div class="double-bezel bento-col-4" data-reveal data-reveal-delay="0.12">
+            <div class="double-bezel-inner" style="justify-content: space-between; min-height: 230px; background: linear-gradient(180deg, rgba(253,251,247,0.2), rgba(28,25,23,0.8)), url('https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=600&auto=format&fit=crop&q=80') center center/cover; border: none; color: var(--white); padding: 20px;">
+              <span class="badge-tag" style="background-color: var(--secondary); position: static; width: fit-content;">Import</span>
+              <div style="margin-top: auto;">
+                <h3 class="product-title" style="color: var(--white); margin-bottom: 8px; font-size: 1.5rem;">Chaussures Importées</h3>
+                <a href="/client/chaussures.html" class="btn-pill btn-pill-primary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: var(--white);">
+                  Explorer
+                  <span class="btn-icon-wrapper">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small bento 2 (Maroquinerie/Sacs) -->
+          <div class="double-bezel bento-col-4" data-reveal data-reveal-delay="0.24">
+            <div class="double-bezel-inner" style="justify-content: space-between; min-height: 230px; background: linear-gradient(180deg, rgba(253,251,247,0.2), rgba(28,25,23,0.8)), url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=80') center center/cover; border: none; color: var(--white); padding: 20px;">
+              <span class="badge-tag" style="background-color: var(--secondary); position: static; width: fit-content;">Maroquinerie</span>
+              <div style="margin-top: auto;">
+                <h3 class="product-title" style="color: var(--white); margin-bottom: 8px; font-size: 1.5rem;">Sacs en Cuir</h3>
+                <a href="/client/sacs.html" class="btn-pill btn-pill-primary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: var(--white);">
+                  Explorer
+                  <span class="btn-icon-wrapper">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quality & Craftsmanship Section -->
+    <section class="section" style="background-color: var(--white); border-top: 1px solid var(--border-color);">
+      <div class="container quality-split-grid">
+
+        <!-- Left Column: Double-Bezel Image Container -->
+        <div class="double-bezel" style="box-shadow: var(--shadow-premium);" data-reveal>
+          <div class="double-bezel-inner" style="padding: 10px; border-radius: calc(var(--radius-lg) - 8px); overflow: hidden;">
+            <img src="/img/823d8fe7a182d3b129e395099ecccde7.jpg" alt="Qualité artisanale et finitions" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md); object-fit: cover; aspect-ratio: 4/3;">
+          </div>
+        </div>
+
+        <!-- Right Column: Text & Micro-Qualifications -->
+        <div data-reveal data-reveal-delay="0.12">
+          <span class="eyebrow" style="background: rgba(217, 119, 6, 0.1); color: var(--primary);">Savoir-Faire Unique</span>
+          <h2 style="font-family: var(--font-display); font-size: 3rem; font-weight: 300; line-height: 1.1; margin-bottom: 24px; color: var(--secondary);">Une Exigence de Qualité <br><em>Sans Compromis</em></h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 32px;">
+            Chaque paire et chaque sac signés Tchokos SARL incarnent l'excellence de l'artisanat. Nous trions à la main les cuirs les plus nobles de la région pour garantir une souplesse divine et une robustesse à l'épreuve des années. Les finitions de nos maîtres chausseurs et maroquiniers offrent un confort inimitable au quotidien.
+          </p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; text-align: left;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--primary); font-size: 1.25rem; line-height: 1;">✓</span>
+              <div>
+                <h4 style="font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; color: var(--secondary); margin-bottom: 4px;">Matériaux Nobles</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">Cuirs pleine fleur rigoureusement sélectionnés pour leur durabilité.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--primary); font-size: 1.25rem; line-height: 1;">✓</span>
+              <div>
+                <h4 style="font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; color: var(--secondary); margin-bottom: 4px;">Précision de Couture</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">Points de renfort faits main pour assurer une robustesse absolue.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="/client/a-propos.html" class="btn-pill btn-pill-primary">
+            L'Artisanat de nos Ateliers
+            <span class="btn-icon-wrapper">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- International Selection Section -->
+    <section class="section" style="background-color: #fcfaf6; border-top: 1px solid var(--border-color);">
+      <div class="container quality-split-grid">
+
+        <!-- Left Column: Text & Specific Elements -->
+        <div data-reveal>
+          <span class="eyebrow" style="background: rgba(30, 41, 59, 0.05); color: var(--secondary);">Sélection Internationale</span>
+          <h2 style="font-family: var(--font-display); font-size: 3rem; font-weight: 300; line-height: 1.1; margin-bottom: 24px; color: var(--secondary);">La Sélection <br><em>Importée</em> de Tchokos</h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 32px;">
+            Parce que le style n'a pas de frontières, nous collaborons avec les maisons de création les plus audacieuses à l'international pour vous proposer des modèles iconiques et exclusifs. 
+          </p>
+
+          <!-- Specific Elements / Checklist -->
+          <ul style="list-style: none; padding: 0; margin: 0 0 40px 0; display: flex; flex-direction: column; gap: 16px;">
+            <li style="display: flex; align-items: center; gap: 12px; color: var(--secondary); font-weight: 500;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(34, 197, 94, 0.1); color: var(--success); border-radius: 50%; font-size: 0.8rem;">✓</span>
+              Créations audacieuses en tissu jacquard et broderies florales
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px; color: var(--secondary); font-weight: 500;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(34, 197, 94, 0.1); color: var(--success); border-radius: 50%; font-size: 0.8rem;">✓</span>
+              Sneakers premium aux nuances pastel et semelles ergonomiques
+            </li>
+            <li style="display: flex; align-items: center; gap: 12px; color: var(--secondary); font-weight: 500;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(34, 197, 94, 0.1); color: var(--success); border-radius: 50%; font-size: 0.8rem;">✓</span>
+              Séries limitées importées directement de têtes de collections
+            </li>
+          </ul>
+
+          <a href="/client/chaussures.html" class="btn-pill btn-pill-primary">
+            Découvrir l'Import
+            <span class="btn-icon-wrapper">↗</span>
+          </a>
+        </div>
+
+        <!-- Right Column: The exact visual rendering (cascade container with heels and sneakers) -->
+        <div class="cascade-container" style="min-height: 450px;" data-reveal data-reveal-delay="0.12">
+          <img class="cascade-img-1" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&auto=format&fit=crop&q=80" alt="Escarpin floral de luxe" loading="lazy">
+          <img class="cascade-img-2" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&auto=format&fit=crop&q=80" alt="Sneaker pastel tendance" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Made in Cameroon Section -->
+    <section class="section" style="background-color: var(--white); border-top: 1px solid var(--border-color);">
+      <div class="container quality-split-grid">
+        
+        <!-- Left Column: Z-Axis Cascade Images -->
+        <div class="cascade-container" style="min-height: 450px;" data-reveal>
+          <img class="cascade-img-1" src="/img/c5932ce22cc8dae847f6b0a661c40b64.jpg" alt="Fabrication artisanale Cameroun" loading="lazy">
+          <img class="cascade-img-2" src="/img/36c81f2b4be4cc82748cabb708ad227b.jpg" alt="Détails finitions locales" loading="lazy">
+        </div>
+
+        <!-- Right Column: Storytelling & Elements -->
+        <div data-reveal data-reveal-delay="0.12">
+          <span class="eyebrow" style="background: rgba(34, 197, 94, 0.1); color: var(--success);">Identité & Fierté</span>
+          <h2 style="font-family: var(--font-display); font-size: 3rem; font-weight: 300; line-height: 1.1; margin-bottom: 24px; color: var(--secondary);">L'Originalité de la Griffe <br><em>Made in Cameroon</em></h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 32px;">
+            Notre griffe célèbre la richesse et l'audace du design camerounais. Chaque création locale est fabriquée dans nos ateliers à Douala, mariant les techniques de coupe classiques à l'expressivité unique de notre culture. Plus qu'une chaussure ou un sac, c'est un morceau d'histoire et d'identité que vous portez.
+          </p>
+          
+          <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; text-align: left;">
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(217, 119, 6, 0.08); color: var(--primary); border-radius: var(--radius-md); font-weight: bold; flex-shrink: 0;">237</div>
+              <div>
+                <h4 style="font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; color: var(--secondary); margin-bottom: 4px;">Cuirs Authentiques du Terroir</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">Sélectionnés parmi les meilleures matières premières locales pour un touché texturé et une patine naturelle.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(34, 197, 94, 0.08); color: var(--success); border-radius: var(--radius-md); font-weight: bold; flex-shrink: 0;">🛠️</div>
+              <div>
+                <h4 style="font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; color: var(--secondary); margin-bottom: 4px;">Savoir-faire et Emplois durables</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">Chaque achat soutient directement nos maîtres artisans et valorise le génie créatif des talents locaux.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="/client/produits-locaux.html" class="btn-pill btn-pill-primary">
+            Soutenir la Création Locale
+            <span class="btn-icon-wrapper">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Reassurance Strip -->
+    <section class="container" data-reveal>
+      <div class="reassurance-strip">
+        <div class="reassurance-item">
+          <span class="reassurance-icon">✓</span>
+          <span class="label">Paiement à la livraison</span>
+        </div>
+        <div class="reassurance-item">
+          <span class="reassurance-icon">📍</span>
+          <span class="label">Retrait boutique à Akwa</span>
+        </div>
+        <div class="reassurance-item">
+          <span class="reassurance-icon">✂️</span>
+          <span class="label">Fabrication artisanale locale</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section" style="background-color: #fcfaf6; border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <span class="eyebrow" style="display: table; margin: 0 auto 12px;">Sélection</span>
+        <h2 class="section-title" style="font-size: 2.5rem; text-align: center; font-family: var(--font-display); font-weight: 300; margin-bottom: 48px;">Articles Vedettes</h2>
+
+        <div class="grid-4" id="featured-products-grid">
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton-img skeleton-shimmer"></div><div class="skeleton-line skeleton-shimmer"></div><div class="skeleton-line short skeleton-shimmer"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton-img skeleton-shimmer"></div><div class="skeleton-line skeleton-shimmer"></div><div class="skeleton-line short skeleton-shimmer"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton-img skeleton-shimmer"></div><div class="skeleton-line skeleton-shimmer"></div><div class="skeleton-line short skeleton-shimmer"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton-img skeleton-shimmer"></div><div class="skeleton-line skeleton-shimmer"></div><div class="skeleton-line short skeleton-shimmer"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="container" data-reveal>
+      <div class="promo-banner-premium">
+        <span class="eyebrow" style="background: rgba(217, 119, 6, 0.2); color: var(--primary);">Service Client</span>
+        <h2 style="font-size: 2.75rem; color: var(--white); margin-bottom: 16px; font-family: var(--font-display); font-weight: 300;">Livraison Gratuite sur Douala</h2>
+        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; color: #d6d3d1;">Commandez en ligne et réglez en toute simplicité à la livraison ou venez retirer votre commande dans notre boutique à Akwa.</p>
+        <a href="/client/boutique.html" class="btn-pill btn-pill-primary" id="promo-cta" style="background: var(--primary); color: var(--white);">
+          Commander Maintenant
+          <span class="btn-icon-wrapper">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp quick-contact -->
+  <a href="https://wa.me/237688094767" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter Tchokos SARL sur WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.481 1.34 4.997L2 22l5.116-1.341a9.958 9.958 0 0 0 4.888 1.28h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.929-7.07a9.93 9.93 0 0 0-7.072-2.869zm0 18.017h-.003a8.3 8.3 0 0 1-4.234-1.16l-.304-.18-3.036.796.81-2.96-.198-.304a8.31 8.31 0 0 1-1.274-4.415c0-4.596 3.741-8.336 8.34-8.336a8.29 8.29 0 0 1 5.9 2.444 8.29 8.29 0 0 1 2.44 5.902c0 4.598-3.741 8.339-8.34 8.339z"/></svg>
+  </a>
+
+  <!-- Dynamic Footer loaded via ui.js -->
+  <footer></footer>
+  <script type="module" src="/client/js/ui.js"></script>
+  <script type="module">
+    import { supabase } from '/client/js/supabaseClient.js'
+    import { gsap } from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    async function loadFeaturedProducts() {
+      const grid = document.getElementById('featured-products-grid')
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      try {
+        const { data: products, error } = await supabase
+          .from('products')
+          .select(`
+            *,
+            categories (name)
+          `)
+          .eq('status', 'published')
+          .eq('is_featured', true)
+          .limit(4)
+
+        if (error) throw error
+
+        if (!products || products.length === 0) {
+          grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Aucun produit vedette disponible.</p>'
+          return
+        }
+
+        grid.innerHTML = products.map(product => `
+          <div class="double-bezel">
+            <div class="double-bezel-inner">
+              ${product.is_new ? '<span class="badge-tag">Nouveau</span>' : ''}
+              <div class="product-img-wrapper" style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px;">
+                <img class="product-img" loading="lazy" src="${product.main_image_url || 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&auto=format&fit=crop&q=60'}" alt="${product.name}">
+              </div>
+              <div class="product-content" style="padding: 0;">
+                <span class="product-category">${product.categories?.name || 'Général'}</span>
+                <h3 class="product-title" style="margin-bottom: 8px; font-size: 1.35rem; font-weight: 300;">${product.name}</h3>
+                <div class="product-price-row" style="margin-bottom: 16px;">
+                  <span class="price">${Number(product.price_retail).toLocaleString('fr-FR')} FCFA</span>
+                </div>
+                <a href="/client/produit.html?slug=${product.slug}" class="btn-pill btn-pill-primary" style="margin-top: auto; justify-content: space-between; width: 100%;">
+                  Voir le produit
+                  <span class="btn-icon-wrapper">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join('')
+
+        if (!prefersReducedMotion) {
+          const cards = grid.querySelectorAll('.double-bezel')
+          gsap.from(cards, { opacity: 0, y: 24, duration: 0.6, stagger: 0.08, ease: 'power2.out' })
+        }
+      } catch (err) {
+        console.error('Erreur chargement produits vedettes:', err)
+        grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--error);">Impossible de charger les produits vedettes.</p>'
+      }
+    }
+
+    function initScrollReveals() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (prefersReducedMotion) return
+
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        const delay = parseFloat(el.getAttribute('data-reveal-delay')) || 0
+        gsap.set(el, { opacity: 0, y: 32 })
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          delay,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+        })
+      })
+    }
+
+    function initMagneticButtons() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const canHover = window.matchMedia('(hover: hover)').matches
+      if (prefersReducedMotion || !canHover) return
+
+      document.querySelectorAll('#hero-cta, #promo-cta').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect()
+          const x = e.clientX - rect.left - rect.width / 2
+          const y = e.clientY - rect.top - rect.height / 2
+          gsap.to(btn, { x: x * 0.25, y: y * 0.35, duration: 0.4, ease: 'power2.out' })
+        })
+        btn.addEventListener('mouseleave', () => {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' })
+        })
+      })
+    }
+
+    function initScrollySlider() {
+      const hero = document.getElementById('hero-scrolly')
+      if (!hero) return
+      
+      const slides = hero.querySelectorAll('.scrolly-slide')
+      const dots = hero.querySelectorAll('.indicator-dot')
+      const totalSlides = slides.length
+      
+      let currentIndex = 0
+      let progressTween = null
+      let bgTween = null
+      let isHovered = false
+      let isOffscreen = false
+      
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const canHover = window.matchMedia('(hover: hover)').matches
+      const counterCurrent = hero.querySelector('.scrolly-counter .current')
+      const ENTRANCE_DURATION = 1.4
+      const HOLD_DURATION = 3.5
+
+      function wrapWords(text) {
+        const leading = /^\s/.test(text) ? ' ' : ''
+        const trailing = /\s$/.test(text) ? ' ' : ''
+        const words = text.trim().split(/\s+/).filter(Boolean)
+          .map(w => `<span class="scrolly-word-mask"><span class="scrolly-word">${w}</span></span>`)
+          .join(' ')
+        return leading + words + trailing
+      }
+
+      // Split all slide titles into masked words, preserving <br> and <em>
+      slides.forEach(slide => {
+        const titleEl = slide.querySelector('.scrolly-title')
+        if (!titleEl) return
+        let html = ''
+        titleEl.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            html += wrapWords(node.textContent)
+          } else if (node.nodeName === 'BR') {
+            html += '<br>'
+          } else if (node.nodeName === 'EM') {
+            html += `<em>${wrapWords(node.textContent)}</em>`
+          }
+        })
+        titleEl.innerHTML = html
+      })
+      
+      function showSlide(index, instant = false) {
+        if (index === currentIndex && progressTween && !instant) return
+        
+        const prevIndex = currentIndex
+        currentIndex = index
+        
+        const prevSlide = slides[prevIndex]
+        const currentSlide = slides[index]
+        
+        // Update dots UI
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === index)
+          const circle = dot.querySelector('.progress-ring-circle')
+          if (circle) {
+            gsap.killTweensOf(circle)
+            circle.style.strokeDashoffset = '88'
+          }
+        })
+        
+        // Kill active tweens on all bg images to avoid overlaps
+        slides.forEach(slide => {
+          const bg = slide.querySelector('.scrolly-bg')
+          if (bg) gsap.killTweensOf(bg)
+        })
+        
+        // Slide Crossfade / Visibility
+        if (prefersReducedMotion) {
+          slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === index)
+            slide.style.opacity = idx === index ? '1' : '0'
+            slide.style.visibility = idx === index ? 'visible' : 'hidden'
+          })
+          
+          // Instant text placement
+          const titleWords = currentSlide.querySelectorAll('.scrolly-word')
+          const desc = currentSlide.querySelector('.scrolly-desc')
+          const eyebrow = currentSlide.querySelector('.scrolly-eyebrow')
+          if (titleWords.length) gsap.set(titleWords, { opacity: 1, y: 0 })
+          if (desc) gsap.set(desc, { opacity: 1, y: 0 })
+          if (eyebrow) gsap.set(eyebrow, { opacity: 1, y: 0 })
+          
+        } else {
+          const prevBg = prevSlide ? prevSlide.querySelector('.scrolly-bg') : null
+
+          // If instant is true, just show the current slide instantly, otherwise fade
+          if (instant) {
+            slides.forEach((slide, idx) => {
+              slide.classList.toggle('active', idx === index)
+              slide.style.opacity = idx === index ? '1' : '0'
+              slide.style.visibility = idx === index ? 'visible' : 'hidden'
+            })
+          } else {
+            // Fade + soften Previous (cinematic exit: slight zoom-out push + blur)
+            if (prevSlide && prevSlide !== currentSlide) {
+              gsap.to(prevSlide, {
+                opacity: 0,
+                duration: ENTRANCE_DURATION,
+                ease: "power3.inOut",
+                onComplete: () => {
+                  prevSlide.style.visibility = 'hidden'
+                  prevSlide.classList.remove('active')
+                }
+              })
+              if (prevBg) {
+                gsap.to(prevBg, { scale: 1.14, filter: 'blur(10px)', duration: ENTRANCE_DURATION, ease: "power3.inOut" })
+              }
+            }
+
+            // Fade In Current
+            currentSlide.classList.add('active')
+            currentSlide.style.visibility = 'visible'
+            gsap.fromTo(currentSlide,
+              { opacity: 0 },
+              { opacity: 1, duration: ENTRANCE_DURATION, ease: "power3.inOut" }
+            )
+          }
+
+          // Cinematic rack-focus entrance (scale + blur settle) then slow continuous Ken Burns zoom
+          const bg = currentSlide.querySelector('.scrolly-bg')
+          if (bg) {
+            gsap.killTweensOf(bg)
+            gsap.set(bg, { scale: 1.22, filter: 'blur(14px)' })
+            const tl = gsap.timeline()
+            tl.to(bg, { scale: 1, filter: 'blur(0px)', duration: ENTRANCE_DURATION, ease: "power3.out" })
+              .to(bg, { scale: 1.08, duration: HOLD_DURATION - ENTRANCE_DURATION, ease: "none" }, "-=0.1")
+            bgTween = tl
+          }
+
+          // Text Reveal animations — masked word-by-word reveal + soft focus-pull on eyebrow/desc
+          const eyebrow = currentSlide.querySelector('.scrolly-eyebrow')
+          const titleWords = currentSlide.querySelectorAll('.scrolly-word')
+          const desc = currentSlide.querySelector('.scrolly-desc')
+
+          if (eyebrow) gsap.killTweensOf(eyebrow)
+          if (titleWords.length) gsap.killTweensOf(titleWords)
+          if (desc) gsap.killTweensOf(desc)
+
+          gsap.set(eyebrow, { opacity: 0, y: 10, filter: 'blur(6px)' })
+          gsap.set(titleWords, { yPercent: 115, opacity: 0 })
+          gsap.set(desc, { opacity: 0, y: 15, filter: 'blur(6px)' })
+
+          if (eyebrow) {
+            gsap.to(eyebrow, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, ease: "power3.out" })
+          }
+          if (titleWords.length) {
+            gsap.to(titleWords, {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.9,
+              stagger: 0.05,
+              delay: 0.1,
+              ease: "power4.out"
+            })
+          }
+          if (desc) {
+            gsap.to(desc, {
+              opacity: 1,
+              y: 0,
+              filter: 'blur(0px)',
+              duration: 0.9,
+              delay: 0.35,
+              ease: "power3.out"
+            })
+          }
+        }
+
+        if (counterCurrent) counterCurrent.textContent = String(index + 1).padStart(2, '0')
+        
+        // Progress Ring fill-up & Autoplay schedule
+        if (!prefersReducedMotion) {
+          const activeCircle = dots[index].querySelector('.progress-ring-circle')
+          if (activeCircle) {
+            progressTween = gsap.fromTo(activeCircle,
+              { strokeDashoffset: 88 },
+              {
+                strokeDashoffset: 0,
+                duration: HOLD_DURATION,
+                ease: "none",
+                onComplete: () => {
+                  showSlide((currentIndex + 1) % totalSlides)
+                }
+              }
+            )
+            // Apply pause state if active
+            updatePauseState()
+          }
+        }
+      }
+      
+      // Pause State handler
+      function updatePauseState() {
+        if (prefersReducedMotion) return
+        
+        if (isHovered || isOffscreen) {
+          if (progressTween) progressTween.pause()
+          if (bgTween) bgTween.pause()
+        } else {
+          if (progressTween) progressTween.play()
+          if (bgTween) bgTween.play()
+        }
+      }
+      
+      // Mouse listeners for Hover Pause
+      hero.addEventListener('mouseenter', () => {
+        isHovered = true
+        updatePauseState()
+      })
+      
+      hero.addEventListener('mouseleave', () => {
+        isHovered = false
+        updatePauseState()
+      })
+      
+      // Intersection Observer for Viewport Pause
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isOffscreen = !entry.isIntersecting
+          updatePauseState()
+        })
+      }, { threshold: 0.15 })
+      observer.observe(hero)
+      
+      // Dot click listeners
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const targetIdx = parseInt(dot.getAttribute('data-index'))
+          showSlide(targetIdx)
+        })
+      })
+      
+      // Cursor Parallax (desktop only, subtle depth on background layer)
+      if (!prefersReducedMotion && canHover) {
+        const sliderContainer = hero.querySelector('.scrolly-slider-container')
+        const textLayers = hero.querySelectorAll('.scrolly-content')
+        if (sliderContainer) {
+          const xToBg = gsap.quickTo(sliderContainer, 'x', { duration: 1.1, ease: 'power3.out' })
+          const yToBg = gsap.quickTo(sliderContainer, 'y', { duration: 1.1, ease: 'power3.out' })
+          const xToText = textLayers.length ? gsap.quickTo(textLayers, 'x', { duration: 0.9, ease: 'power3.out' }) : null
+          const yToText = textLayers.length ? gsap.quickTo(textLayers, 'y', { duration: 0.9, ease: 'power3.out' }) : null
+
+          hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect()
+            const relX = (e.clientX - rect.left) / rect.width - 0.5
+            const relY = (e.clientY - rect.top) / rect.height - 0.5
+            xToBg(relX * -20)
+            yToBg(relY * -14)
+            if (xToText) xToText(relX * 8)
+            if (yToText) yToText(relY * 6)
+          })
+
+          hero.addEventListener('mouseleave', () => {
+            xToBg(0)
+            yToBg(0)
+            if (xToText) xToText(0)
+            if (yToText) yToText(0)
+          })
+        }
+      }
+
+      // Touch swipe listeners for Mobile
+      let touchStartX = 0
+      let touchEndX = 0
+      
+      hero.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX
+      }, { passive: true })
+      
+      hero.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX
+        handleSwipe()
+      }, { passive: true })
+      
+      function handleSwipe() {
+        const threshold = 55
+        if (touchStartX - touchEndX > threshold) {
+          showSlide((currentIndex + 1) % totalSlides)
+        } else if (touchEndX - touchStartX > threshold) {
+          showSlide((currentIndex - 1 + totalSlides) % totalSlides)
+        }
+      }
+      
+      // Scroll Parallax and Darkening effects via ScrollTrigger
+      if (!prefersReducedMotion) {
+        gsap.to('.scrolly-text-wrapper', {
+          y: -60,
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        })
+        
+        gsap.to('.scroll-darken-overlay', {
+          opacity: 0.75,
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        })
+      }
+      
+      // Start Slide 1 (priority)
+      showSlide(0, true)
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFeaturedProducts()
+      initScrollySlider()
+      initScrollReveals()
+      initMagneticButtons()
+    })
+  </script>
+</body>
+</html>

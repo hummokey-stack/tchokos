@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 80px;
+    }
+    .faq-item {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      padding: 20px 24px;
+      font-weight: 600;
+      color: var(--secondary);
+      font-family: var(--font-display);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background-color: var(--white);
+      transition: var(--transition-fast);
+    }
+    .faq-question:hover {
+      background-color: var(--light-bg);
+      color: var(--primary);
+    }
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-normal) ease-out, padding var(--transition-normal) ease-out;
+      color: var(--text-dark);
+      border-top: 0 solid var(--border-color);
+    }
+    .faq-item.active .faq-answer {
+      padding: 20px 24px;
+      max-height: 200px;
+      border-top: 1px solid var(--border-color);
+    }
+    .faq-icon {
+      transition: transform var(--transition-normal);
+      font-weight: bold;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header -->
+  <header></header>
+
+  <main class="container">
+    <div class="faq-container">
+      <h1 style="font-family: var(--font-display); text-align: center; margin-bottom: 12px; color: var(--secondary);">Foire Aux Questions</h1>
+      <p style="text-align: center; color: var(--text-muted); margin-bottom: 48px;">Trouvez des réponses rapides aux questions les plus fréquentes.</p>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Quels sont les modes de livraison disponibles ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Nous proposons deux modes de retrait : la livraison à domicile directement sur Douala (tarif fixe de 3 000 FCFA) ou le retrait gratuit dans notre boutique physique située à Akwa, Douala.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Quels sont les moyens de paiement acceptés ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Pour cette version, le paiement s'effectue en magasin lors du retrait ou directement en espèces / Mobile Money au livreur lors de la livraison de votre commande.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Quel est le délai de livraison ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Toute commande passée sur notre site est traitée sous 24 heures. La livraison s'effectue généralement sous 24h à 48h maximum après confirmation téléphonique par nos équipes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Proposez-vous des tarifs pour l'achat en gros ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Oui, nous avons des tarifs préférentiels pour les achats en gros ou demandes de devis professionnels. Vous pouvez sélectionner l'option "Achat en gros" lors de la validation de votre panier.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Puis-je échanger ou retourner un produit ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolument. Si la pointure ou la couleur ne convient pas, vous disposez d'un délai de 7 jours après achat pour échanger votre produit en boutique à Akwa, sous réserve que l'article soit resté à l'état neuf, non porté, et dans son emballage d'origine.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer -->
+  <footer></footer>
+
+  <script type="module" src="/client/js/ui.js"></script>
+  <script type="module">
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    .catalog-header {
+      background-color: var(--secondary);
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .catalog-header h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+    }
+
+    .filter-bar {
+      background-color: var(--white);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 768px) {
+      .filter-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header -->
+  <header></header>
+
+  <main>
+    <section class="catalog-header">
+      <div class="container">
+        <h1 id="catalog-title">Toute la Boutique</h1>
+        <p style="color: #94a3b8; margin-top: 10px;">Parcourez notre collection exclusive de chaussures et d'accessoires de luxe.</p>
+      </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 80px;">
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="form-group" style="margin-bottom: 0;">
+          <input type="text" id="search-input" class="form-input" placeholder="Rechercher un produit (référence, nom...)">
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="category-filter" class="form-input">
+            <option value="">Toutes les catégories</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="sort-filter" class="form-input">
+            <option value="">Trier par</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+            <option value="newest">Nouveautés</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid-4" id="products-grid">
+        <p style="text-align: center; grid-column: 1/-1; color: var(--text-muted);">Chargement de la boutique...</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer -->
+  <footer></footer>
+
+  <script type="module" src="/client/js/ui.js"></script>
+  <script type="module" src="/client/js/catalogue.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Services — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    .service-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition-normal);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-premium);
+      border-color: var(--primary);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header -->
+  <header></header>
+
+  <main>
+    <section class="section" style="background-color: var(--secondary); color: var(--white); text-align: center; padding: 60px 0;">
+      <div class="container">
+        <h1 style="color: var(--white); font-size: 2.5rem; font-family: var(--font-display);">Nos Services Artisanaux</h1>
+        <p style="color: #94a3b8; margin-top: 10px;">Au-delà de la vente, nous prenons soin de vos articles de cuir préférés.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-3">
+          
+          <div class="service-card">
+            <div class="service-icon">🪡</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; color: var(--secondary);">Cordonnerie de Précision</h3>
+            <p style="color: var(--text-muted);">Réparation haut de gamme pour vos mocassins, talons et sandales. Remplacement de semelles, talons et coutures pour redonner vie à vos souliers.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; color: var(--secondary);">Personnalisation Unique</h3>
+            <p style="color: var(--text-muted);">Teinture personnalisée, gravure sur cuir et choix de boucles. Personnalisez vos chaussures fabriquées localement pour qu'elles s'adaptent parfaitement à votre style.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">✨</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; color: var(--secondary);">Restauration de Maroquinerie</h3>
+            <p style="color: var(--text-muted);">Entretien complet de vos sacs à main, sacoches et ceintures en cuir. Nettoyage en profondeur, hydratation du cuir et réparation des fermetures éclair.</p>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top: 60px; text-align: center; background-color: var(--primary-light); border-color: var(--primary);">
+          <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 12px; color: var(--secondary);">Besoin d'un service sur-mesure ?</h3>
+          <p style="color: var(--text-dark); margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">Passez dans notre atelier à Akwa, Douala ou contactez-nous directement pour obtenir un devis gratuit pour la restauration ou la création de vos articles en cuir.</p>
+          <a href="/client/contact.html" class="btn btn-primary">Nous Contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer -->
+  <footer></footer>
+
+  <script type="module" src="/client/js/ui.js"></script>
+</body>
+</html>

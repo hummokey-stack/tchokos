@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À Propos — Tchokos SARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  <link rel="stylesheet" href="/client/css/style.css">
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1473188588955-719d0b818d66?w=1600&auto=format&fit=crop&q=80') no-repeat center center/cover;
+      padding: 100px 0;
+      color: var(--white);
+      text-align: center;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header -->
+  <header></header>
+
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <h1 style="color: var(--white); font-size: 3rem; font-family: var(--font-display);">Notre Histoire</h1>
+        <p style="color: #cbd5e1; font-size: 1.2rem; max-width: 600px; margin: 15px auto 0;">Allier le luxe importé et la passion de l'artisanat local à Douala.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px; color: var(--secondary);">Qui sommes-nous ?</h2>
+            <p style="margin-bottom: 16px; color: var(--text-dark);">Fondée au cœur du quartier dynamique d'<strong>Akwa à Douala</strong>, Tchokos SARL s'est imposée comme une référence incontournable de la chaussure et de la maroquinerie de luxe au Cameroun.</p>
+            <p style="margin-bottom: 16px; color: var(--text-dark);">Notre activité s'articule autour de trois piliers principaux :</p>
+            <ul style="margin-left: 20px; margin-bottom: 24px; color: var(--text-dark); display: flex; flex-direction: column; gap: 8px;">
+              <li><strong>Importation de prestige :</strong> Une sélection de mocassins et chaussures haut de gamme de marques internationales reconnues.</li>
+              <li><strong>Atelier local :</strong> Conception et fabrication artisanale de sandales et chaussures en cuir de qualité supérieure.</li>
+              <li><strong>Maroquinerie de Douala :</strong> Création de sacs en cuir durables, élégants et adaptés au quotidien.</li>
+            </ul>
+            <p style="color: var(--text-muted); font-style: italic;">"Nous croyons en un luxe accessible, durable, qui valorise le savoir-faire de nos artisans locaux tout en proposant les plus hauts standards internationaux."</p>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1590534244455-c9945f3c2b9b?w=600&auto=format&fit=crop&q=80" alt="Atelier Tchokos" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer -->
+  <footer></footer>
+
+  <script type="module" src="/client/js/ui.js"></script>
+</body>
+</html>
