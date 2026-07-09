@@ -180,6 +180,20 @@ button, input, select, textarea {
   color: var(--primary);
 }
 
+.logo-img {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid rgba(28, 25, 23, 0.1);
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+}
+
 .nav-links {
   display: flex;
   gap: 32px;
