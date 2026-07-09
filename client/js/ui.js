@@ -3,7 +3,7 @@ import { mettreAJourBadge } from './panier.js'
 export function initHeaderFooter() {
   const headerHtml = `
     <div class="container flex-between nav-container">
-      <a href="/" class="logo"><img src="/images/logo.jpg" alt="Tchokos Logo" class="logo-img">Tchokos<span>.</span></a>
+      <a href="/" class="logo"><img src="/images/logo.webp" alt="Tchokos Logo" class="logo-img">Tchokos<span>.</span></a>
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="/" id="link-home">Accueil</a></li>
@@ -32,7 +32,7 @@ export function initHeaderFooter() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a href="/" class="logo"><img src="/images/logo.jpg" alt="Tchokos Logo" class="logo-img">Tchokos<span>.</span></a>
+          <a href="/" class="logo"><img src="/images/logo.webp" alt="Tchokos Logo" class="logo-img">Tchokos<span>.</span></a>
           <p>Tchokos SARL, fabricant et revendeur de chaussures et sacs de luxe à Akwa, Douala. L'alliance de l'artisanat local et de l'élégance internationale.</p>
           <div class="social-links">
             <a href="https://www.facebook.com/tchokosgrossiste" target="_blank" class="social-icon" title="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg></a>

@@ -7,22 +7,27 @@
   <meta name="description" content="Tchokos SARL — Chaussures et sacs en cuir fabriqués à Douala et sélection internationale. Vente en gros et au détail, retrait en boutique à Akwa ou livraison sur Douala.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+  <link rel="icon" type="image/webp" href="/images/logo.webp">
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Preload LCP hero image (first slide background) -->
+  <link rel="preload" as="image" href="/img/136114b1f4f231a692442ad784463e24.webp">
+
+  <!-- Font Awesome Icons (loaded async to avoid blocking render) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tchokos SARL — Boutique de Luxe Chaussures & Sacs">
   <meta property="og:description" content="Tchokos SARL — Chaussures et sacs en cuir fabriqués à Douala et sélection internationale. Vente en gros et au détail, retrait en boutique à Akwa ou livraison sur Douala.">
-  <meta property="og:image" content="/img/136114b1f4f231a692442ad784463e24.jpg">
+  <meta property="og:image" content="/img/136114b1f4f231a692442ad784463e24.webp">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tchokos SARL — Boutique de Luxe Chaussures & Sacs">
   <meta name="twitter:description" content="Tchokos SARL — Chaussures et sacs en cuir fabriqués à Douala et sélection internationale. Vente en gros et au détail, retrait en boutique à Akwa ou livraison sur Douala.">
-  <meta name="twitter:image" content="/img/136114b1f4f231a692442ad784463e24.jpg">
+  <meta name="twitter:image" content="/img/136114b1f4f231a692442ad784463e24.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
@@ -287,7 +292,7 @@
         
         <!-- Slide 1 -->
         <div class="scrolly-slide active">
-          <div class="scrolly-bg" style="background-image: url('/img/136114b1f4f231a692442ad784463e24.jpg');"></div>
+          <div class="scrolly-bg" style="background-image: url('/img/136114b1f4f231a692442ad784463e24.webp');"></div>
           <div class="scrolly-overlay"></div>
           <div class="container scrolly-content">
             <div class="scrolly-text-wrapper">
@@ -300,7 +305,7 @@
 
         <!-- Slide 2 -->
         <div class="scrolly-slide">
-          <div class="scrolly-bg" style="background-image: url('/img/6ffc2ad6481354a670ea7e94522069db.jpg');"></div>
+          <div class="scrolly-bg" style="background-image: url('/img/6ffc2ad6481354a670ea7e94522069db.webp');"></div>
           <div class="scrolly-overlay"></div>
           <div class="container scrolly-content">
             <div class="scrolly-text-wrapper">
@@ -313,7 +318,7 @@
 
         <!-- Slide 3 -->
         <div class="scrolly-slide">
-          <div class="scrolly-bg" style="background-image: url('/img/36c81f2b4be4cc82748cabb708ad227b.jpg');"></div>
+          <div class="scrolly-bg" style="background-image: url('/img/36c81f2b4be4cc82748cabb708ad227b.webp');"></div>
           <div class="scrolly-overlay"></div>
           <div class="container scrolly-content">
             <div class="scrolly-text-wrapper">
@@ -326,7 +331,7 @@
 
         <!-- Slide 4 -->
         <div class="scrolly-slide">
-          <div class="scrolly-bg" style="background-image: url('/img/c26cc44a291a30f1cae7b2331c94cf23.jpg');"></div>
+          <div class="scrolly-bg" style="background-image: url('/img/c26cc44a291a30f1cae7b2331c94cf23.webp');"></div>
           <div class="scrolly-overlay"></div>
           <div class="container scrolly-content">
             <div class="scrolly-text-wrapper">
@@ -461,7 +466,7 @@
         <!-- Left Column: Double-Bezel Image Container -->
         <div class="double-bezel" style="box-shadow: var(--shadow-premium);" data-reveal>
           <div class="double-bezel-inner" style="padding: 10px; border-radius: calc(var(--radius-lg) - 8px); overflow: hidden;">
-            <img src="/img/823d8fe7a182d3b129e395099ecccde7.jpg" alt="Qualité artisanale et finitions" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md); object-fit: cover; aspect-ratio: 4/3;">
+            <img src="/img/823d8fe7a182d3b129e395099ecccde7.webp" alt="Qualité artisanale et finitions" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md); object-fit: cover; aspect-ratio: 4/3;">
           </div>
         </div>
 
@@ -548,8 +553,8 @@
         
         <!-- Left Column: Z-Axis Cascade Images -->
         <div class="cascade-container" style="min-height: 450px;" data-reveal>
-          <img class="cascade-img-1" src="/img/c5932ce22cc8dae847f6b0a661c40b64.jpg" alt="Fabrication artisanale Cameroun" loading="lazy">
-          <img class="cascade-img-2" src="/img/36c81f2b4be4cc82748cabb708ad227b.jpg" alt="Détails finitions locales" loading="lazy">
+          <img class="cascade-img-1" src="/img/c5932ce22cc8dae847f6b0a661c40b64.webp" alt="Fabrication artisanale Cameroun" loading="lazy">
+          <img class="cascade-img-2" src="/img/36c81f2b4be4cc82748cabb708ad227b.webp" alt="Détails finitions locales" loading="lazy">
         </div>
 
         <!-- Right Column: Storytelling & Elements -->
