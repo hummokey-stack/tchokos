@@ -98,7 +98,7 @@ function initMockDatabase() {
       {
         "id": "super-admin-uuid-1111-2222",
         "name": "Directeur Général",
-        "email": "admin@tchokoss.com",
+        "email": "admin@tchokos.com",
         "role": "super_admin",
         "created_at": "2026-07-06T00:00:00.000Z"
       }
