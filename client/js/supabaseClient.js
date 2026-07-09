@@ -554,3 +554,9 @@ class MockSupabaseClient {
 export const supabase = isLiveSupabaseAvailable
   ? createClient(supabaseUrl, supabaseAnonKey)
   : new MockSupabaseClient();
+
+console.log(
+  isLiveSupabaseAvailable 
+    ? "🔌 Database Connection: Connected to Live Supabase DB" 
+    : "🤖 Database Connection: Running in Local Mock Database Mode"
+);
